@@ -1,0 +1,35 @@
+#include<stdio.h>
+int charge(int);
+int main()
+{
+ int cubicfeet,rate;
+  printf("Enter water in cubic feet:");
+  scanf("%d",&cubicfeet);
+
+  rate=charge(cubicfeet);
+  printf("water bill is Rs.%d",rate);
+}
+int charge(int cubicfeet)
+{
+  int rate;
+  if(cubicfeet<=1000)
+ {
+   rate=155;
+   return rate;
+ }
+ else if(cubicfeet>1000&&cubicfeet<=2000)
+ {
+  rate=((cubicfeet-1000)*0.175)+155;
+  return rate;
+ }
+ else if(cubicfeet>2000&&cubicfeet<=3000)
+ {
+  rate=((cubicfeet-2000)*0.200)+330;
+  return rate;
+ }
+ else if(cubicfeet>3000)
+ {
+  rate==700;
+  return rate;
+ }
+}
