@@ -1,0 +1,108 @@
+#include<stdio.h>
+
+float t_Sell_Amt(float num, float SELL_COST)
+{
+	float tsa;
+	tsa = num*SELL_COST ;
+	return(tsa);
+}
+float t_Buy_Amt (float num,float BUY_COST)
+{
+	float tba ;
+	tba = num*BUY_COST ;
+	return(tba);
+}
+float turvovr (float T_B_A,float T_S_A)
+{
+	float tot_tvr ;
+	tot_tvr = T_B_A + T_S_A ;
+	return(tot_tvr);
+}
+float grspft( float T_B_A , float T_S_A)
+{
+	float gpft ;
+	gpft=T_S_A - T_B_A ;
+	return(gpft);
+}
+float brokarage(float T_B_A ,float T_S_A)
+{
+	float BrS , BrB , TotBr ;
+	BrB= T_B_A * 0.03/100 ;
+
+	BrS= T_S_A * 0.03 /100 ;
+	TotBr = BrB +BrS ;
+	return (TotBr);
+}
+float calSrv_tax (float TOTBROKRG)
+{
+	float s_t ;
+	s_t = TOTBROKRG * 10.36/100 ;
+	return(s_t);
+}
+float cal_Stt_tax(float T_S_A)
+{
+	float stt ;
+	stt= T_S_A*0.025/100 ;
+	return(stt);
+}
+float cal_Stmp_tax(float TOT_TURNOVR)
+{
+	float stmp ;
+	stmp = TOT_TURNOVR * 0.002/100 ;
+	return(stmp);
+}
+float cal_Rg_tax(float TOT_TURNOVR)
+{
+	float rg ;
+	rg= TOT_TURNOVR * 0.004/100 ;
+	return(rg);
+}
+float cal_Tot_Tax(float SRV_TAX , float STT_TAX ,float STMP_TAX,float REG_TAX )
+
+{
+	float tot ;
+	tot = SRV_TAX + STT_TAX + STMP_TAX + REG_TAX;
+	return(tot);
+}
+float cal_prft(float GRSPFT , float TOT_TAX)
+{
+	float prft ;
+	prft = GRSPFT - TOT_TAX ;
+	return(prft );
+}
+int main()
+{
+
+	float BUY_COST , T_B_A, T_S_A, SELL_COST , TOT_TRNOVR, GRSPFT , TOTBROKRG ;
+	float SRV_TAX , STT_TAX , STMP_TAX ,REG_TAX ,TOT_TAX ,PROFIT ;
+	int num ;
+	printf("Enter the buying cost and number of shares:\n");
+	scanf("%f%d", &BUY_COST, &num);
+	printf("Enter the selling cost of the shares:");
+	scanf("%f", &SELL_COST);
+	T_S_A=t_Sell_Amt(num,SELL_COST);
+	T_B_A=t_Buy_Amt(num,BUY_COST);
+	printf("selling amount = %f\t buying amount = %f \n", T_S_A,T_B_A);
+	TOT_TRNOVR=turvovr(T_B_A, T_S_A);
+	printf("total turnover = %f\n", TOT_TRNOVR);
+	GRSPFT= grspft(T_B_A , T_S_A);
+	printf("total gross profit = %f \n",GRSPFT);
+	TOTBROKRG= brokarage(T_B_A , T_S_A);
+
+	printf("%f is total brokarage \n", TOTBROKRG);
+	SRV_TAX = calSrv_tax(TOTBROKRG);
+	printf("The service tax is = %f \n", SRV_TAX);
+	STT_TAX= cal_Stt_tax(T_S_A);
+	printf("The stt tax = %f \n", STT_TAX);
+	STMP_TAX= cal_Stmp_tax(TOT_TRNOVR);
+	printf("The stmp tax = %f \n", STMP_TAX);
+	REG_TAX=cal_Rg_tax(TOT_TRNOVR);
+	printf("%f is the regular tax \n", REG_TAX);
+
+	TOT_TAX= cal_Tot_Tax(SRV_TAX ,STT_TAX , STMP_TAX,REG_TAX ) ;
+	printf("%f is the total tax \n", TOT_TAX);
+	PROFIT=cal_prft(GRSPFT , TOT_TAX);
+	printf("%f is the profit \n", PROFIT);
+
+	return 0;
+}
