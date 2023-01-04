@@ -1,0 +1,31 @@
+#include<stdio.h>
+int coordinate_x(int px, int rx)
+{
+	int qx;
+	qx=2*rx-px;
+	
+	return qx;	
+}
+
+int coordinate_y(int py, int ry)
+{
+	int qy;
+	qy=2*ry-py;
+	
+	return qy;	
+}
+
+int main()
+{
+	int px, qx, rx, py, qy, ry;
+	printf("\n Enter the coordinates of first point:");
+	scanf("%d\t%d", &px, &py);
+	printf("\n Enter the coordinates of inversion point:");
+	scanf("%d\t%d", &rx, &ry);
+
+	qx=coordinate_x(px, rx);
+	qy=coordinate_y(py, ry);
+	printf("\n The coordinates of second point:%d\t%d \n", qx, qy);
+	
+}
+	
